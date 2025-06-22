@@ -37,7 +37,6 @@ abstract class SettingAttribute
 
     private function cast()
     {
-
         return $this->value = $this::query()?->value ?? $this->value;
     }
 
@@ -92,6 +91,13 @@ abstract class SettingAttribute
     {
         $snake = static::getSnakeFqn();
 
-        return "settings.{$snake}";
+        $config = static::getConfigCacheKey();
+
+        return "{$config}.{$snake}";
+    }
+
+    public static function getConfigCacheKey(): string
+    {
+        return config('fqn-settings.cache.key');
     }
 }

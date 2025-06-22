@@ -5,7 +5,7 @@ namespace Betta\Settings\Commands\Filegenerators;
 use Filament\Support\Commands\FileGenerators\ClassGenerator;
 use Nette\PhpGenerator\ClassType;
 
-class AttributeClassGenerator extends ClassGenerator
+class ValueClassGenerator extends ClassGenerator
 {
     final public function __construct(
         protected string $fqn,

@@ -2,6 +2,7 @@
 
 namespace Betta\Settings\Models\Concerns\Traits;
 
+use Betta\Settings\SettingAttribute;
 use Illuminate\Support\Facades\Cache;
 
 trait CanBeCached
@@ -13,7 +14,18 @@ trait CanBeCached
 
     public function cache(): void
     {
-        $this->getClassString()::get();
+        if($this->classFileExists()){
+            $this->getClassString()::get();
+        } else {
+            $this->toCache();
+        }
+    }
+
+    private function toCache(): void
+    {
+        Cache::rememberForever(static::getCacheKey(), function () {
+            return $this->value;
+        });
     }
 
     public function getClassString(): string
@@ -21,9 +33,16 @@ trait CanBeCached
         return $this->fqn;
     }
 
+    public function classFileExists(): bool
+    {
+        return class_exists($this->fqn);
+    }
+
     public function getCacheKey(): string
     {
-        return "settings.{$this->getSnakeFqn()}";
+        $config = SettingAttribute::getConfigCacheKey();
+
+        return "{$config}.{$this->getSnakeFqn()}";
     }
 
     public function isCached(): bool

@@ -2,7 +2,7 @@
 
 namespace Betta\Settings\Commands;
 
-use Betta\Settings\Commands\Filegenerators\AttributeClassGenerator;
+use Betta\Settings\Commands\Filegenerators\ValueClassGenerator;
 use Filament\Support\Commands\Concerns\CanAskForComponentLocation;
 use Filament\Support\Commands\Concerns\CanManipulateFiles;
 use Illuminate\Console\Command;
@@ -38,7 +38,7 @@ class CreateCommand extends Command
 
         $this->configureValue();
 
-        $this->writeFile($this->attributePath, app(AttributeClassGenerator::class, [
+        $this->writeFile($this->attributePath, app(ValueClassGenerator::class, [
             'fqn' => "App\\Settings\\{$this->name}",
             'value' => $this->value,
             'type' => $this->type,

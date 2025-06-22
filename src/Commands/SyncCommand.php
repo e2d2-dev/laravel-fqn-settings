@@ -7,9 +7,9 @@ use Betta\Settings\Settings;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Attribute\AsCommand;
 
-#[AsCommand(name: 'settings:recover')]
+#[AsCommand(name: 'settings:sync')]
 
-class RecoverCommand extends Command
+class SyncCommand extends Command
 {
     protected $description = 'Recovers settings to database';
 
@@ -19,7 +19,7 @@ class RecoverCommand extends Command
     {
         $this->before();
 
-        Settings::recover();
+        Settings::sync();
 
         $this->info($this->getMessage());
 

@@ -27,7 +27,10 @@ class FqnSetting extends Model
     use HasFqn;
     use HasJsonFallback;
 
-    protected $table = 'fqn_settings';
+    public function getTable(): string
+    {
+        return config('fqn-settings.database.table');
+    }
 
     protected $casts = [
         'lost_at' => 'datetime',

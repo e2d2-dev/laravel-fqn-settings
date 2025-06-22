@@ -2,6 +2,7 @@
 
 namespace Betta\Settings;
 
+use Betta\Settings\Collections\SyncLogCollection;
 use Betta\Settings\Concerns\CanDiscoverPaths;
 use Betta\Settings\Concerns\CanDiscoverSettings;
 use Betta\Settings\Concerns\CanHaveLostSetting;
@@ -16,7 +17,7 @@ class Registry
 
     protected array $settings = [];
 
-    protected array $recovered = [];
+    protected array $synced = [];
 
     public function __construct()
     {
@@ -28,15 +29,17 @@ class Registry
         app(static::class)->execute();
     }
 
-    public function recover(): array
+    public function sync(): SyncLogCollection
     {
         foreach ($this->settings as $setting) {
-            app($setting)->recoverWhenDoesntExist($this->recovered);
+            app($setting)->recoverWhenDoesntExist($this->synced);
         }
 
-        $this->markLost();
+        $lost = $this->markLost();
 
-        return [$this->recovered, count($this->recovered)];
+        return SyncLogCollection::make()
+            ->addSynced($this->synced)
+            ->addLost($lost);
     }
 
     public function getDiscoveredSettings(): array

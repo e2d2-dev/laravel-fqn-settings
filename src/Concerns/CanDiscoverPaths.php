@@ -21,7 +21,7 @@ trait CanDiscoverPaths
 
     public function addConfigPaths(): void
     {
-        $config = config('setting.discover');
+        $config = config('fqn-settings.discover') ?? [];
 
         foreach ($config as $path => $namespace) {
             $this->path($path, $namespace);
