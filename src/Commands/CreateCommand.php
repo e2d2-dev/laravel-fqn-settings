@@ -2,9 +2,9 @@
 
 namespace Betta\Settings\Commands;
 
+use Betta\Settings\Commands\Concerns\CanAskForComponentLocation;
+use Betta\Settings\Commands\Concerns\CanManipulateFiles;
 use Betta\Settings\Commands\Filegenerators\ValueClassGenerator;
-use Filament\Support\Commands\Concerns\CanAskForComponentLocation;
-use Filament\Support\Commands\Concerns\CanManipulateFiles;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;

@@ -1,15 +1,17 @@
 # FQN Settings
-This package creates persistent settings for your app. Each setting will be available as a class. Values can be read and written by calling the class statically.
+This package creates persistent settings for your app. Each setting will be represented with it's own class/file. Values can be read and written by calling the class statically.
 
 ## Features
 - [Autodiscovery](#autodiscovery)
 - [Default Values](#default-values)
+- [Package Support](#vendor-packages)
 
 
-## Content
+## Quick Start
 - [Getting Started](#getting-started)
 - [Setting Class](#setting-class)
-
+- [Retrieving](#retrieving)
+- [Storing](#updating)
 
 ## Installation
 
