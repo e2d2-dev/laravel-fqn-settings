@@ -27,6 +27,15 @@ class FqnSetting extends Model
     use HasFqn;
     use HasJsonFallback;
 
+    protected $fillable = [
+        'fqn',
+        'key',
+        'type',
+        'value',
+        'lost_at',
+        'encrypt',
+    ];
+
     public function getTable(): string
     {
         return config('fqn-settings.database.table');
