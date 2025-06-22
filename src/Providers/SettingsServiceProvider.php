@@ -20,7 +20,7 @@ class SettingsServiceProvider extends ServiceProvider
     {
         $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'fqn-settings');
 
-        $this->loadMigrationsFrom('/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
 
         $this->mergeConfigFrom(__DIR__.'/../../config/fqn-settings.php', 'fqn-settings');
 
