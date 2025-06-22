@@ -6,6 +6,7 @@ use Betta\Settings\Commands\Concerns\CanAskForComponentLocation;
 use Betta\Settings\Commands\Concerns\CanManipulateFiles;
 use Betta\Settings\Commands\Filegenerators\ValueClassGenerator;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -43,6 +44,17 @@ class CreateCommand extends Command
             'value' => $this->value,
             'type' => $this->type,
         ]));
+
+        $this->info($this->attributePath.' created successfully.');
+
+        $this->confirmSynchronizeNow();
+    }
+
+    protected function confirmSynchronizeNow(): void
+    {
+        when($this->confirm('Do you want to synchronize settings now?'),function (){
+            Artisan::call('settings:sync');
+        });
     }
 
     protected function getOptions(): array

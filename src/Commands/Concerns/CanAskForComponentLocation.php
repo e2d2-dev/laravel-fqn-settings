@@ -2,8 +2,6 @@
 
 namespace Betta\Settings\Commands\Concerns;
 
-use Filament\Support\Facades\FilamentCli;
-
 use function Laravel\Prompts\select;
 
 trait CanAskForComponentLocation
@@ -19,7 +17,7 @@ trait CanAskForComponentLocation
     {
         $pathNamespace = (string) str($path)->replace('/', '\\');
 
-        $locations = FilamentCli::getComponentLocations();
+        $locations = [];
 
         if (blank($locations)) {
             return [
