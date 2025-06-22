@@ -5,6 +5,7 @@ namespace Betta\Settings\Commands;
 use Betta\Settings\Models\FqnSetting;
 use Betta\Settings\Settings;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Schema;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 #[AsCommand(name: 'settings:sync')]
@@ -17,6 +18,9 @@ class SyncCommand extends Command
 
     public function handle()
     {
+        if(! Schema::hasTable(config('fqn-settings.database.table'))){
+            $this->fail('Table does not exist');
+        }
         $this->before();
 
         Settings::sync();
