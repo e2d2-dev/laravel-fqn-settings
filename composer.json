@@ -1,0 +1,24 @@
+{
+	"name": "e2d2-dev/laravel-fqn-settings",
+    "description": "Synced Key => value settings between database and classes.",
+	"version": "1.0",
+    "license": "MIT",
+    "require": {
+        "php": ">=8.2"
+    },
+    "autoload": {
+		"psr-4": {
+			"Betta\\Settings\\": "src/",
+			"Betta\\Settings\\Tests\\": "tests/",
+			"Betta\\Settings\\Database\\Seeders\\": "database/seeders/"
+		}
+	},
+	"minimum-stability": "stable",
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Betta\\Settings\\Providers\\SettingsServiceProvider"
+			]
+		}
+	}
+}
