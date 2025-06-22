@@ -2,7 +2,6 @@
 
 namespace Betta\Settings\Commands\Filegenerators;
 
-use Filament\Support\Commands\FileGenerators\ClassGenerator;
 use Nette\PhpGenerator\ClassType;
 
 class ValueClassGenerator extends ClassGenerator

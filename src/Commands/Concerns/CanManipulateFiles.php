@@ -2,7 +2,7 @@
 
 namespace Betta\Settings\Commands\Concerns;
 
-use Filament\Support\Commands\FileGenerators\Contracts\FileGenerator;
+use Betta\Settings\Commands\Filegenerators\Contracts\FileGenerator;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
 use ReflectionClass;
