@@ -5,6 +5,7 @@ namespace Betta\Settings\Commands;
 use Betta\Settings\Commands\Concerns\CanAskForComponentLocation;
 use Betta\Settings\Commands\Concerns\CanManipulateFiles;
 use Betta\Settings\Commands\Filegenerators\ValueClassGenerator;
+use Filament\Facades\Filament;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -52,6 +53,9 @@ class CreateCommand extends Command
 
     protected function confirmSynchronizeNow(): void
     {
+        if(Filament::isServing()){
+            return;
+        }
         when($this->confirm('Do you want to synchronize settings now?'),function (){
             Artisan::call('settings:sync');
         });

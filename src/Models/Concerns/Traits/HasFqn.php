@@ -8,7 +8,7 @@ trait HasFqn
     {
         $appFqn = 'App\\Settings\\';
 
-        if (! str($this->fqn)->startsWith($appFqn)) {
+        if ( $this->fqn !== null and! str($this->fqn)->startsWith($appFqn)) {
             return;
         }
 
