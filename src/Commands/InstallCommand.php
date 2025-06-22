@@ -6,6 +6,7 @@ use Betta\Settings\Commands\Concerns\CanOpenUrlInBrowser;
 use Betta\Settings\Models\FqnSetting;
 use Betta\Settings\Settings;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 use Symfony\Component\Console\Attribute\AsCommand;
 use function Laravel\Prompts\confirm;
 
@@ -21,6 +22,7 @@ class InstallCommand extends Command
     public function handle(): void
     {
         $this->installUpgradeCommand();
+        $this->askToMigrate();
         $this->askToStar();
     }
 
@@ -56,6 +58,18 @@ class InstallCommand extends Command
                     replace: '    "keywords": ["framework", "laravel"],',
                 ),
         );
+    }
+
+    protected function askToMigrate(): void
+    {
+        if (! confirm(
+            label: 'Should we run the migrations now?',
+            default: true,
+        )) {
+            return;
+        }
+
+        Artisan::call('migrate');
     }
 
     protected function askToStar(): void
