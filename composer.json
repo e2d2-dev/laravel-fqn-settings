@@ -17,7 +17,7 @@
 	"extra": {
 		"laravel": {
 			"providers": [
-				"Betta\\Settings\\Providers\\SettingsServiceProvider"
+                "Betta\\Settings\\Providers\\FqnSettingsServiceProvider"
 			]
 		}
 	}
