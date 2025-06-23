@@ -18,8 +18,6 @@ class FqnSettingsServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        $this->publishesMigrations();
-
         $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'fqn-settings');
 
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
