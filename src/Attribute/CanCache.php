@@ -14,7 +14,7 @@ trait CanCache
     private function fromCache()
     {
         return Cache::rememberForever(static::getCacheKey(), function () {
-            return $this->cast();
+            return $this->typeCheck();
         });
     }
 

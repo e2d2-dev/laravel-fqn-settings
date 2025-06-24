@@ -28,16 +28,21 @@ class FqnSetting extends Model
     use HasJsonFallback;
 
     protected $fillable = [
+        'default',
+        'encrypt',
         'fqn',
         'key',
+        'lost_at',
+        'nullable',
         'type',
         'value',
-        'lost_at',
-        'encrypt',
+
     ];
 
     protected $casts = [
         'lost_at' => 'datetime',
+        'nullable' => 'boolean',
+        'encrypt' => 'boolean',
     ];
 
     protected static function booted(): void

@@ -31,8 +31,12 @@ abstract class SettingAttribute
         static::forgetCache();
     }
 
-    private function cast()
+    private function typeCheck()
     {
-        return $this->value = $this::query()?->value ?? $this->value;
+        try {
+            return $this->value = $this::query()?->value ?? $this->value;
+        } catch (\Exception $exception){
+
+        }
     }
 }

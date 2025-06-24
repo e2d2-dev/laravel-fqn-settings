@@ -17,16 +17,20 @@ trait CanRecover
 
     public function recover(): void
     {
-        $value = $this->cast();
+        $value = $this->typeCheck();
 
         $reflection = new \ReflectionClass(static::class);
+
+        $type = $reflection->getProperty('value')->getType();
+        $nullable = $type->allowsNull();
 
         FqnSetting::create([
             'key' => $this->getSnakeKey(),
             'fqn' => static::class,
             'value' => $value,
             'default' => $value,
-            'type' => $reflection->getProperty('value')->getType(),
+            'type' => $type->getName(),
+            'nullable' => $nullable,
         ]);
     }
 }

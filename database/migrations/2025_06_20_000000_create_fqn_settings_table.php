@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string('type')->nullable();
             $table->json('value')->nullable();
             $table->json('default')->nullable();
+            $table->boolean('nullable')->default(false);
             $table->boolean('encrypt')->default(false);
             $table->dateTime('lost_at')->nullable();
             $table->timestamps();
