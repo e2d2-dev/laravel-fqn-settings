@@ -8,7 +8,7 @@ trait HasStatePath
     {
         $key = str(static::class)->afterLast('\\')->snake();
         // $group = static::class::getGroup();
-        $path = str(static::class)->beforeLast('\\')->replace('\\', ' ')->snake();
+        $path = str(static::class)->beforeLast('\\')->replace('\\', '_')->snake();
 
         return "{$path}.{$key}";
         //        return implode('.', array_filter([
