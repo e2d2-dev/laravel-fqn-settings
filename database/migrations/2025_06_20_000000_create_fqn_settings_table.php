@@ -9,7 +9,7 @@ return new class extends Migration
     {
         Schema::create('fqn_settings', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('fqn')->index();
+            $table->string('fqn')->unique()->index();
             $table->string('key')->index();
             $table->string('type')->nullable();
             $table->json('value')->nullable();

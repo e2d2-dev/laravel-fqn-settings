@@ -6,9 +6,9 @@ use Betta\Settings\SettingAttribute;
 
 trait CanDiscoverPaths
 {
-    protected array $directories = [];
+    public array $directories = [];
 
-    protected function addPaths(): void
+    public function register(): void
     {
         $this->addConfigPaths();
         $this->addAppPath();

@@ -8,11 +8,9 @@ trait HasFqn
     {
         $appFqn = 'App\\Settings\\';
 
-        if ($this->fqn !== null and ! str($this->fqn)->startsWith($appFqn)) {
-            return;
+        if ($this->fqn === null) {
+            $this->fqn = "{$appFqn}{$this->getStudlyKey()}";
         }
-
-        $this->fqn = "{$appFqn}{$this->getStudlyKey()}";
     }
 
     public function getStudlyKey(): string

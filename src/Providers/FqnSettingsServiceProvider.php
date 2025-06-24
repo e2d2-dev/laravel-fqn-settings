@@ -14,6 +14,8 @@ class FqnSettingsServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->singleton(Settings::class, Registry::class);
+
+        Settings::register();
     }
 
     public function boot(): void
@@ -23,6 +25,14 @@ class FqnSettingsServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
 
         $this->mergeConfigFrom(__DIR__.'/../../config/fqn-settings.php', 'fqn-settings');
+
+        $this->publishes([
+            __DIR__.'/../../database/migrations/' => database_path('migrations'),
+        ], 'laravel-fqn-settings-migrations');
+
+        $this->publishes([
+            __DIR__.'/../../config/fqn-settings.php' => config_path('fqn-settings'),
+        ], 'laravel-fqn-settings-config');
 
         $this->bootPackageCommands();
     }

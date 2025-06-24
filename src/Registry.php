@@ -15,19 +15,9 @@ class Registry
     use CanHaveLostSetting;
     use CanRetrieveFromDatabase;
 
-    protected array $settings = [];
+    public array $settings = [];
 
-    protected array $synced = [];
-
-    public function __construct()
-    {
-        $this->addPaths();
-    }
-
-    public static function run(): void
-    {
-        app(static::class)->execute();
-    }
+    public array $synced = [];
 
     public function sync(): SyncLogCollection
     {
