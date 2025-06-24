@@ -3,11 +3,10 @@
 namespace Betta\Settings\Commands;
 
 use Betta\Settings\Commands\Concerns\CanOpenUrlInBrowser;
-use Betta\Settings\Models\FqnSetting;
-use Betta\Settings\Settings;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Symfony\Component\Console\Attribute\AsCommand;
+
 use function Laravel\Prompts\confirm;
 
 #[AsCommand(name: 'settings:install')]
@@ -17,7 +16,6 @@ class InstallCommand extends Command
     use CanOpenUrlInBrowser;
 
     protected $description = 'Install fqn settings';
-
 
     public function handle(): void
     {

@@ -18,7 +18,7 @@ class SyncCommand extends Command
 
     public function handle()
     {
-        if(! Schema::hasTable('fqn_settings')){
+        if (! Schema::hasTable('fqn_settings')) {
             $this->fail('Settings Table does not exist');
         }
         $this->before();

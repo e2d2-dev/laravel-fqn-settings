@@ -6,9 +6,8 @@ use Betta\Settings\Attribute\CanCache;
 use Betta\Settings\Attribute\CanRecover;
 use Betta\Settings\Attribute\CanSnake;
 use Betta\Settings\Attribute\HasDatabase;
+use Betta\Settings\Attribute\HasGroup;
 use Betta\Settings\Attribute\HasStatePath;
-use Betta\Settings\Models\FqnSetting;
-use Illuminate\Support\Facades\Cache;
 
 abstract class SettingAttribute
 {
@@ -16,6 +15,7 @@ abstract class SettingAttribute
     use CanRecover;
     use CanSnake;
     use HasDatabase;
+    use HasGroup;
     use HasStatePath;
 
     public static function get()

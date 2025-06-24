@@ -53,10 +53,10 @@ class CreateCommand extends Command
 
     protected function confirmSynchronizeNow(): void
     {
-        if(Filament::isServing()){
+        if (Filament::isServing()) {
             return;
         }
-        when($this->confirm('Do you want to synchronize settings now?'),function (){
+        when($this->confirm('Do you want to synchronize settings now?'), function () {
             Artisan::call('settings:sync');
         });
     }

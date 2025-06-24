@@ -5,20 +5,23 @@ namespace Betta\Settings\Collections;
 class SyncLogCollection
 {
     public array $lost = [];
+
     public array $synced = [];
 
     public static function make(): static
     {
         return app(static::class);
     }
-    public function addLost(string | array $fqn): static
+
+    public function addLost(string|array $fqn): static
     {
-        if(is_array($fqn)){
+        if (is_array($fqn)) {
             $this->lost = array_merge($this->lost, $fqn);
         }
-        if(is_string($fqn)){
+        if (is_string($fqn)) {
             $this->lost[] = $fqn;
         }
+
         return $this;
     }
 
@@ -27,14 +30,15 @@ class SyncLogCollection
         return count($this->lost);
     }
 
-    public function addSynced(string | array $fqn): static
+    public function addSynced(string|array $fqn): static
     {
-        if(is_array($fqn)){
+        if (is_array($fqn)) {
             $this->synced = array_merge($this->synced, $fqn);
         }
-        if(is_string($fqn)){
+        if (is_string($fqn)) {
             $this->synced[] = $fqn;
         }
+
         return $this;
     }
 

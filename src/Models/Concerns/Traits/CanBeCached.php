@@ -14,7 +14,7 @@ trait CanBeCached
 
     public function cache(): void
     {
-        if($this->classFileExists()){
+        if ($this->classFileExists()) {
             $this->getClassString()::get();
         } else {
             $this->toCache();

@@ -8,7 +8,7 @@ trait HasJsonFallback
 {
     public function saveFallback(): void
     {
-        if(! config('fqn-settings.fallback.enabled')) {
+        if (! config('fqn-settings.fallback.enabled')) {
             return;
         }
         $file = config_path('setting-fallback.json');

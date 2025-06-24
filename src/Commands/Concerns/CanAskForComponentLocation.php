@@ -22,7 +22,7 @@ trait CanAskForComponentLocation
         if (blank($locations)) {
             return [
                 "App\\Filament\\{$pathNamespace}",
-                app_path('Filament' . DIRECTORY_SEPARATOR . $path),
+                app_path('Filament'.DIRECTORY_SEPARATOR.$path),
                 '',
             ];
         }
@@ -46,14 +46,14 @@ trait CanAskForComponentLocation
         if (blank($namespace)) {
             return [
                 "App\\Filament\\{$pathNamespace}",
-                app_path('Filament' . DIRECTORY_SEPARATOR . $path),
+                app_path('Filament'.DIRECTORY_SEPARATOR.$path),
                 '',
             ];
         }
 
         return [
             "{$namespace}\\{$pathNamespace}",
-            $locations[$namespace]['path'] . '/' . $path,
+            $locations[$namespace]['path'].'/'.$path,
             $locations[$namespace]['viewNamespace'] ?? null,
         ];
     }

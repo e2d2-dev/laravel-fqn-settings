@@ -10,6 +10,7 @@ trait HasDatabase
     {
         return FqnSetting::query()->firstWhere('fqn', static::class);
     }
+
     public function existsInDatabase(): bool
     {
         return (bool) FqnSetting::query()->where('fqn', static::class)->first();

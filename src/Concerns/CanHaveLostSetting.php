@@ -3,7 +3,6 @@
 namespace Betta\Settings\Concerns;
 
 use Betta\Settings\Models\FqnSetting;
-use Illuminate\Support\Collection;
 
 trait CanHaveLostSetting
 {
@@ -14,6 +13,7 @@ trait CanHaveLostSetting
                 return in_array($setting->fqn, $this->settings);
             })->map(function (FqnSetting $setting) {
                 $setting->markLost();
+
                 return $setting->fqn;
             })->toArray();
     }
