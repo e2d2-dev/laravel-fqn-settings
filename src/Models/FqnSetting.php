@@ -36,11 +36,6 @@ class FqnSetting extends Model
         'encrypt',
     ];
 
-    public function getTable(): string
-    {
-        return config('fqn-settings.database.table');
-    }
-
     protected $casts = [
         'lost_at' => 'datetime',
     ];
@@ -54,24 +49,11 @@ class FqnSetting extends Model
 
         static::saving(function (FqnSetting $model) {
             $model->encryptWhenEnabled();
-            $model->castStringBoolean();
         });
 
         static::saved(function (FqnSetting $model) {
             $model->saveFallback();
         });
-    }
-
-    public function castStringBoolean(): void
-    {
-        // dd($this->getAttributes());
-        //        if($this->type == 'string'){
-        //            dd(
-        //                when($this->value, fn() => 'true', 'false')
-        //            );
-        //            $this->value = when($this->value, fn() => 'true', 'false');
-        //            $this->default = when($this->default, fn() => 'true', 'false');
-        //        }
     }
 
     public function encryptWhenEnabled(): mixed

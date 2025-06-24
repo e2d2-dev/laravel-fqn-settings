@@ -98,6 +98,6 @@ abstract class SettingAttribute
 
     public static function getConfigCacheKey(): string
     {
-        return config('fqn-settings.cache.key');
+        return 'fqn_settings';
     }
 }

@@ -18,7 +18,7 @@ class SyncCommand extends Command
 
     public function handle()
     {
-        if(! Schema::hasTable(config('fqn-settings.database.table'))){
+        if(! Schema::hasTable('fqn_settings')){
             $this->fail('Settings Table does not exist');
         }
         $this->before();
@@ -40,8 +40,8 @@ class SyncCommand extends Command
         $recoveredCount = FqnSetting::count() - $this->count;
 
         return match ($recoveredCount) {
-            0 => 'No new settings recovered',
-            default => "Recovered {$recoveredCount} new settings...",
+            0 => 'No new settings found',
+            default => "Found {$recoveredCount} new settings...",
         };
     }
 }
