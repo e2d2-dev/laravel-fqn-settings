@@ -36,7 +36,6 @@ trait CanDiscoverPaths
 
         $in = trim($for, '\\');
 
-        dump($in, $for);
         $this->directories[$path] = $in;
         $this->discoverSettings(SettingAttribute::class, $this->settings, $path, $for);
     }

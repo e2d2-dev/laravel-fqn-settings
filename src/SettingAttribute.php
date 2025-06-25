@@ -35,7 +35,7 @@ abstract class SettingAttribute
     {
         try {
             return $this->value = $this::query()?->value ?? $this->value;
-        } catch (\Exception $exception){
+        } catch (\Exception $exception) {
 
         }
     }
