@@ -30,8 +30,14 @@ trait CanDiscoverPaths
 
     public function path(string $in, string $for): void
     {
-        $path = base_path($in);
-        $this->directories[$path] = $for;
+        $path = base_path(
+            trim($in, '/')
+        );
+
+        $in = trim($for, '\\');
+
+        dump($in, $for);
+        $this->directories[$path] = $in;
         $this->discoverSettings(SettingAttribute::class, $this->settings, $path, $for);
     }
 
