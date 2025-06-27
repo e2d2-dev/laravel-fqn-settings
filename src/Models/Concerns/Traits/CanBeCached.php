@@ -15,7 +15,9 @@ trait CanBeCached
     public function cache(): void
     {
         if ($this->classFileExists()) {
-            $this->getClassString()::get();
+            /** @var SettingAttribute $setting */
+            $setting = $this->getClassString();
+            $setting::get();
         } else {
             $this->toCache();
         }

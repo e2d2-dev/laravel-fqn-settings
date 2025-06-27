@@ -36,13 +36,13 @@ class FqnSetting extends Model
         'nullable',
         'type',
         'value',
-
     ];
 
     protected $casts = [
         'lost_at' => 'datetime',
         'nullable' => 'boolean',
         'encrypt' => 'boolean',
+        'value' => 'json',
     ];
 
     protected static function booted(): void
@@ -63,8 +63,21 @@ class FqnSetting extends Model
 
     public function encryptWhenEnabled(): mixed
     {
-        return $this->value = $this->encrypt ?
-            Crypt::encrypt($this->value) :
-            $this->value;
+        if ($this->encrypt) {
+            $this->setAttribute('value', Crypt::encrypt($this->attributes['value']));
+        }
+        return $this->attributes['value'];
+    }
+
+    public function getValueAttribute($value)
+    {
+        if ($this->encrypt && $value) {
+            try {
+                return json_decode(Crypt::decrypt($value), true);
+            } catch (\Exception $e) {
+                return json_decode($value, true);
+            }
+        }
+        return json_decode($value, true);
     }
 }

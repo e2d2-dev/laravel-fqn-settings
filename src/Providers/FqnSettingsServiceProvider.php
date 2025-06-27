@@ -24,15 +24,19 @@ class FqnSettingsServiceProvider extends ServiceProvider
 
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
 
-        $this->mergeConfigFrom(__DIR__.'/../../config/fqn-settings.php', 'fqn-settings');
+        $this->mergeConfigFrom(__DIR__.'/../../config/fqn-settings.php', 'fqn-settings.php');
 
         $this->publishes([
             __DIR__.'/../../database/migrations/' => database_path('migrations'),
         ], 'laravel-fqn-settings-migrations');
 
         $this->publishes([
-            __DIR__.'/../../config/fqn-settings.php' => config_path('fqn-settings'),
+            __DIR__.'/../../config/fqn-settings.php' => config_path('fqn-settings.php'),
         ], 'laravel-fqn-settings-config');
+
+        $this->publishes([
+            __DIR__.'/../../resources/lang' => resource_path('lang/vendor/fqn-settings'),
+        ], 'laravel-fqn-settings-translations');
 
         $this->bootPackageCommands();
     }
