@@ -49,4 +49,9 @@ trait CanBeCached
     {
         return (bool) Cache::has($this->getCacheKey());
     }
+
+    public function cacheDiffers(): bool
+    {
+        return $this->isCached() and $this->value !== Cache::get($this->getCacheKey());
+    }
 }
