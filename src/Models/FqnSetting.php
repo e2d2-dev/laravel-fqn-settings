@@ -66,6 +66,7 @@ class FqnSetting extends Model
         if ($this->encrypt) {
             $this->setAttribute('value', Crypt::encrypt($this->attributes['value']));
         }
+
         return $this->attributes['value'];
     }
 
@@ -78,6 +79,7 @@ class FqnSetting extends Model
                 return json_decode($value, true);
             }
         }
+
         return json_decode($value, true);
     }
 }
