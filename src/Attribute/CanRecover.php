@@ -24,11 +24,16 @@ trait CanRecover
         $type = $reflection->getProperty('value')->getType();
         $nullable = $type->allowsNull();
 
+        $matchedValue = match ($type->getName()) {
+            'array' => json_encode($value),
+            default => $value,
+        };
+
         FqnSetting::create([
             'key' => $this->getSnakeKey(),
             'fqn' => static::class,
-            'value' => $value,
-            'default' => $value,
+            'value' => $matchedValue,
+            'default' => $matchedValue,
             'type' => $type->getName(),
             'nullable' => $nullable,
         ]);

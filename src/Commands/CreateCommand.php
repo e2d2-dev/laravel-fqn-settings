@@ -89,7 +89,7 @@ class CreateCommand extends Command
 
         $this->type = (string) str($this->option('type') ?? select(
             label: 'What is the return type?',
-            options: ['string' => 'string', 'int' => 'int', 'float' => 'float', 'bool' => 'bool'],
+            options: ['string' => 'string', 'int' => 'int', 'float' => 'float', 'bool' => 'bool', 'array' => 'array'],
             default: 'string'
         ))
             ->snake();

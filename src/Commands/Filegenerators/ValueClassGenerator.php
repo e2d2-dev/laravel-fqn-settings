@@ -57,6 +57,7 @@ class ValueClassGenerator extends ClassGenerator
             'bool' => (bool) $this->value,
             'int' => (int) $this->value,
             'float' => (float) $this->value,
+            'array' => json_encode($this->value),
             default => $this->value,
         };
     }
