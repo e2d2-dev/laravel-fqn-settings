@@ -31,12 +31,23 @@ abstract class SettingAttribute
         static::forgetCache();
     }
 
-    private function typeCheck()
+    protected function typeCheck()
     {
         try {
-            return $this->value = $this::query()?->value ?? $this->value;
+            return $this->value = $this->getDatabaseValue() ?? $this->value;
         } catch (\Exception $exception) {
 
         }
+    }
+
+    public function getDatabaseValue(): mixed
+    {
+        return json_decode(static::query()?->value, true);
+    }
+    protected function isArray(): bool
+    {
+        $reflection = new \ReflectionClass($this);
+        $prop = $reflection->getProperty('value');
+        return $prop->getType()->getName() == 'array';
     }
 }

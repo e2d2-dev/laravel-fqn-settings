@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Crypt;
  * @property mixed $value
  * @property mixed $default
  * @property string $type
+ * @property bool $nullable
  */
 class FqnSetting extends Model
 {
@@ -42,7 +43,6 @@ class FqnSetting extends Model
         'lost_at' => 'datetime',
         'nullable' => 'boolean',
         'encrypt' => 'boolean',
-        'value' => 'json',
     ];
 
     protected static function booted(): void
@@ -70,16 +70,20 @@ class FqnSetting extends Model
         return $this->attributes['value'];
     }
 
-    public function getValueAttribute($value)
+    public function getValueAttribute($value): string
     {
         if ($this->encrypt && $value) {
             try {
-                return json_decode(Crypt::decrypt($value), true);
+                return Crypt::decrypt($value);
             } catch (\Exception $e) {
-                return json_decode($value, true);
+                return $value;
             }
         }
+        return $value;
+    }
 
-        return json_decode($value, true);
+    public function isNullable(): bool
+    {
+        return $this->nullable;
     }
 }
