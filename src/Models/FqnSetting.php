@@ -70,7 +70,7 @@ class FqnSetting extends Model
         return $this->attributes['value'];
     }
 
-    public function getValueAttribute($value): string
+    public function getValueAttribute($value): mixed
     {
         if ($this->encrypt && $value) {
             try {
